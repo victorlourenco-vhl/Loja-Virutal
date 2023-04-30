@@ -31,12 +31,19 @@ public class Estado implements Serializable{
 		
 	}
 
-	public Estado(String name, String sigla, Date dataCriacao, Date dataAtualizacao) {
+	public Estado(Integer id, String name, String sigla) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.sigla = sigla;
-		this.dataCriacao = dataCriacao;
-		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
