@@ -24,7 +24,7 @@ public class EstadoService {
 		return rep.save(estado);
 	}
 
-	public Estado atualizar(Estado estado, Integer id) {
+	public Estado atualizar(Integer id, Estado estado) {
 		estado.setId(id);
 		estado.setDataAtualizacao(new Date());
 		return rep.save(estado);

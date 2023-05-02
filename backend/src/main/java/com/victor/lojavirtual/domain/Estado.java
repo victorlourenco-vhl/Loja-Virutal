@@ -20,7 +20,7 @@ public class Estado implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String nome;
 	private String sigla;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCriacao;
@@ -31,10 +31,10 @@ public class Estado implements Serializable{
 		
 	}
 
-	public Estado(Integer id, String name, String sigla) {
+	public Estado(Integer id, String nome, String sigla) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 		this.sigla = sigla;
 	}
 
@@ -46,12 +46,12 @@ public class Estado implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getSigla() {
