@@ -16,6 +16,7 @@ public class Marca implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Integer nome;
 	private Date dataCriacao;
 	private Date dataAtualizacao;
 	
@@ -23,14 +24,13 @@ public class Marca implements Serializable {
 		
 	}
 
-	public Marca(Integer id, Date dataCriacao, Date dataAtualizacao) {
+	public Marca(Integer id, Integer nome, Date dataCriacao, Date dataAtualizacao) {
 		super();
 		this.id = id;
+		this.nome = nome;
 		this.dataCriacao = dataCriacao;
 		this.dataAtualizacao = dataAtualizacao;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -38,6 +38,14 @@ public class Marca implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getNome() {
+		return nome;
+	}
+
+	public void setNome(Integer nome) {
+		this.nome = nome;
 	}
 
 	public Date getDataCriacao() {
@@ -55,12 +63,6 @@ public class Marca implements Serializable {
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
 	
 	
 
