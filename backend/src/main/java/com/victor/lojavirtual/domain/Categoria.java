@@ -1,4 +1,4 @@
-package com.victor.lojavirtual.controller;
+package com.victor.lojavirtual.domain;
 
 import java.io.Serializable;
 import java.util.Date;
