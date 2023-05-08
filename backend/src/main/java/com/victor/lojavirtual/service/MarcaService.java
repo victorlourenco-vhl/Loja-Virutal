@@ -14,33 +14,38 @@ import com.victor.lojavirtual.repository.MarcaRepository;
 public class MarcaService {
 
 	@Autowired
-	private MarcaRepository repo;
+	private MarcaRepository rep;
 	
 	public Marca acharPorId(Integer id) {
-		Optional<Marca> obj = repo.findById(id);
+		Optional<Marca> obj = rep.findById(id);
 		return obj.orElseThrow();
 	}
 	
+	public Marca inserir(Marca obj) {
+		obj.setDataCriacao(new Date());
+		return rep.save(obj);
+	} 
+	
 	public List<Marca> listar(){
-		return repo.findAll();
+		return rep.findAll();
 	}
 	
 	public Marca cadastrar(Marca obj) {
 		obj.setId(null);
 		obj.setDataCriacao(new Date());
-		return repo.save(obj);
+		return rep.save(obj);
 	}
 	
 	public Marca atualizar(Integer id, Marca newObj) {
 		Marca obj = acharPorId(id);
 		obj.setNome(newObj.getNome());
 		obj.setDataAtualizacao(new Date());
-		return repo.save(obj);
+		return rep.save(obj);
 	}
 	
 	public void deletar(Integer id) {
 		acharPorId(id);
-		repo.deleteById(id);
+		rep.deleteById(id);
 	}
 	
 }
