@@ -44,8 +44,8 @@ public class MarcaService {
 	}
 	
 	public void deletar(Integer id) {
-		acharPorId(id);
-		rep.deleteById(id);
+		Marca obj = acharPorId(id);
+		rep.delete(obj);
 	}
 	
 }

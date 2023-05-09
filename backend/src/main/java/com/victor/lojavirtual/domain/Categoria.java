@@ -1,15 +1,21 @@
-package com.victor.lojavirtual.controller;
+package com.victor.lojavirtual.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Categoria implements Serializable {
 
 	private final static long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String nome;
 	private Date dataCriacao;
 	private Date dataAtualizacao;
@@ -21,6 +27,14 @@ public class Categoria implements Serializable {
 	public Categoria(String nome) {
 		super();
 		this.nome = nome;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {

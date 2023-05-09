@@ -39,7 +39,8 @@ public class EstadoService {
 	}
 
 	public void deletar(Integer id) {
-		rep.deleteById(id);
+		Estado obj = acharPorId(id);
+		rep.delete(obj);
 	}
 
 }
