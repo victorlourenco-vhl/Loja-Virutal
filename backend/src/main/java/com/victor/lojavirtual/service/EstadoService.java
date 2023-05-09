@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.victor.lojavirtual.domain.Cidade;
 import com.victor.lojavirtual.domain.Estado;
 import com.victor.lojavirtual.repository.EstadoRepository;
 
