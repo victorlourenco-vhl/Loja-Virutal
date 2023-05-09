@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.victor.lojavirtual.domain.Categoria;
+import com.victor.lojavirtual.domain.Cidade;
 import com.victor.lojavirtual.repository.CategoriaRepository;
 
 @Service
@@ -44,8 +45,8 @@ public class CategoriaService {
 	}
 	
 	public void deletar(Integer id) {
-		acharPorId(id);
-		rep.deleteById(id);
+		Categoria obj = acharPorId(id);
+		rep.delete(obj);
 	}
 
 }

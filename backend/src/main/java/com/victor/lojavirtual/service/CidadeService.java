@@ -8,39 +8,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.victor.lojavirtual.domain.Cidade;
-import com.victor.lojavirtual.domain.Estado;
-import com.victor.lojavirtual.repository.EstadoRepository;
+import com.victor.lojavirtual.repository.CidadeRepository;
 
 @Service
-public class EstadoService {
+public class CidadeService {
 
 	@Autowired
-	private EstadoRepository rep;
+	private CidadeRepository rep;
 	
-	public Estado acharPorId(Integer id) {
-		Optional<Estado> obj = rep.findById(id);
+	public Cidade acharPorId(Integer id) {
+		Optional<Cidade> obj = rep.findById(id);
 		return obj.orElseThrow();
 	}
 
-	public List<Estado> listar() {
+	public List<Cidade> listar() {
 		return rep.findAll();
 	}
 
-	public Estado inserir(Estado estado) {
-		estado.setDataCriacao(new Date());
-		return rep.save(estado);
+	public Cidade inserir(Cidade obj) {
+		obj.setDataCriacao(new Date());
+		return rep.save(obj);
 	}
 
-	public Estado atualizar(Integer id, Estado newObj) {
-		Estado obj = acharPorId(id);
+	public Cidade atualizar(Integer id, Cidade newObj) {
+		Cidade obj = acharPorId(id);
 		obj.setNome(newObj.getNome());
-		obj.setSigla(newObj.getSigla());
+		obj.setEstado(newObj.getEstado());
 		obj.setDataAtualizacao(new Date());
 		return rep.save(obj);
 	}
 
 	public void deletar(Integer id) {
-		Estado obj = acharPorId(id);
+		Cidade obj = acharPorId(id);
 		rep.delete(obj);
 	}
 

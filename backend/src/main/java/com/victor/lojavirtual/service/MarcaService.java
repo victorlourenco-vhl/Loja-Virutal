@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.victor.lojavirtual.domain.Cidade;
 import com.victor.lojavirtual.domain.Marca;
 import com.victor.lojavirtual.repository.MarcaRepository;
 
@@ -44,8 +45,8 @@ public class MarcaService {
 	}
 	
 	public void deletar(Integer id) {
-		acharPorId(id);
-		rep.deleteById(id);
+		Marca obj = acharPorId(id);
+		rep.delete(obj);
 	}
 	
 }
