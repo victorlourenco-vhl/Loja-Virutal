@@ -33,6 +33,10 @@ public class Produto implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAtualizacao;
 
+	private Marca marca;
+
+	private Categoria categoria;
+
 	@OneToMany(mappedBy = "produto")
 	private List<Imagem> imagens;
 
@@ -40,13 +44,17 @@ public class Produto implements Serializable {
 
 	}
 
-	public Produto(Integer id, String descricaoCurta, String descricaoDetalhada, Double valorCusto, Double valorVenda) {
+	public Produto(Integer id, Double valorCusto, Double valorVenda, Date dataCriacao, Date dataAtualizacao,
+			Marca marca, Categoria categoria, List<Imagem> imagens) {
 		super();
 		this.id = id;
-		this.descricaoCurta = descricaoCurta;
-		this.descricaoDetalhada = descricaoDetalhada;
 		this.valorCusto = valorCusto;
 		this.valorVenda = valorVenda;
+		this.dataCriacao = dataCriacao;
+		this.dataAtualizacao = dataAtualizacao;
+		this.marca = marca;
+		this.categoria = categoria;
+		this.imagens = imagens;
 	}
 
 	public Integer getId() {
@@ -111,6 +119,22 @@ public class Produto implements Serializable {
 
 	public void setImagens(List<Imagem> imagens) {
 		this.imagens = imagens;
+	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 }
