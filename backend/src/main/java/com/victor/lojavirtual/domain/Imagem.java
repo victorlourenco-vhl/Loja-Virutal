@@ -4,67 +4,66 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+import com.victor.lojavirtual.util.ImagemUtil;
+
 @Entity
 @Table(name = "imagem")
 public class Imagem implements Serializable {
 
-    private final static long serialVersionUID = 1L;
+	private final static long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    private String name;
+	private String name;
 
-    private String type;
+	private String type;
 
-    @Lob
-    private byte[] imageData;
+	@Lob
+	private byte[] imageData;
 
-    public Imagem() {
-    }
+	public Imagem() {
+	}
 
-    public Imagem(Integer id, String name, String type, byte[] imageData) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.imageData = imageData;
-    }
+	public Imagem(Integer id, String name, String type, byte[] imageData) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.imageData = imageData;
+	}
 
+	public Integer getId() {
+		return id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public byte[] getimageData() {
+		return ImagemUtil.decompressImage(imageData);
+	}
 
-    public byte[] getimageData() {
-        return imageData;
-    }
-
-    public void setimageData(byte[] imageData) {
-        this.imageData = imageData;
-    }
-
-
+	public void setimageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
 
 }

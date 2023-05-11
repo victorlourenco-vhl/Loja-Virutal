@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface ImagemRepository extends JpaRepository<Imagem, Integer> {
 
-    Optional<Imagem> findByName(String name);
+     Optional<Imagem> findByName(String name);
 
 }
