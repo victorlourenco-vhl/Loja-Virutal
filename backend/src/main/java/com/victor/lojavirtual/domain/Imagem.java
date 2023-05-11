@@ -1,13 +1,8 @@
 package com.victor.lojavirtual.domain;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "imagem")
@@ -24,17 +19,17 @@ public class Imagem implements Serializable {
 	private String type;
 
 	@Lob
-	private byte[] data;
+	private byte[] imageData;
 
 	public Imagem() {
 	}
 
-	public Imagem(Integer id, String name, String type, byte[] data) {
+	public Imagem(Integer id, String name, String type, byte[] imageData) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
-		this.data = data;
+		this.imageData = imageData;
 	}
 
 	public Integer getId() {
@@ -61,12 +56,12 @@ public class Imagem implements Serializable {
 		this.type = type;
 	}
 
-	public byte[] getData() {
-		return data;
+	public byte[] getimageData() {
+		return imageData;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setimageData(byte[] imageData) {
+		this.imageData = imageData;
 	}
 
 }

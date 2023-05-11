@@ -39,7 +39,7 @@ public class ProdutoService {
 		obj.setDataAtualizacao(new Date());
 		obj.setMarca(newObj.getMarca());
 		obj.setCategoria(newObj.getCategoria());
-		obj.setImagens(newObj.getImagens());
+//		obj.setImagens(newObj.getImagens());
 		return rep.save(obj);
 	}
 
