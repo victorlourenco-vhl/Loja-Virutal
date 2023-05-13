@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.victor.lojavirtual.domain.Imagem;
 import com.victor.lojavirtual.service.ImagemService;
 
 @RestController
@@ -31,16 +30,9 @@ public class ImagemController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
-	@GetMapping("/info/{name}")
-	public ResponseEntity<?> getImageInfoByName(@PathVariable("name") String name) {
-		Imagem image = rep.getInfoByImageByName(name);
-
-		return ResponseEntity.status(HttpStatus.OK).body(image);
-	}
-
-	@GetMapping("/{name}")
-	public ResponseEntity<?> getImageByName(@PathVariable("name") String name) {
-		byte[] image = rep.getImage(name);
+	@GetMapping("/{id}")
+	public ResponseEntity<?> acharImadgemPordId(@PathVariable("id") Integer id) {
+		byte[] image = rep.acharImagemPorId(id);
 
 		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("imagem/png")).body(image);
 	}
