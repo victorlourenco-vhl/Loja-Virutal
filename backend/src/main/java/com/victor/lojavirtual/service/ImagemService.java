@@ -23,7 +23,7 @@ public class ImagemService {
 
         rep.save(img);
 
-        return "Image uploaded successfully: " +
+        return "Upload realizado com sucesso: " +
                 file.getOriginalFilename();
 
     }
@@ -39,8 +39,8 @@ public class ImagemService {
     @Transactional
     public byte[] getImage(String name) {
         Optional<Imagem> img = rep.findByName(name);
-        byte[] image = ImagemUtil.decompressImage(img.get().getimageData());
-        return image;
+        byte[] imagem = img.get().getimageData();
+        return imagem;
     }
 
 }
