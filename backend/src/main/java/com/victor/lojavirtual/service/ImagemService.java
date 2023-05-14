@@ -1,21 +1,28 @@
 package com.victor.lojavirtual.service;
 
-import com.victor.lojavirtual.domain.Imagem;
-import com.victor.lojavirtual.repository.ImagemRepository;
-import com.victor.lojavirtual.util.ImagemUtil;
-import jakarta.transaction.Transactional;
+import java.io.IOException;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.Optional;
+import com.victor.lojavirtual.domain.Imagem;
+import com.victor.lojavirtual.repository.ImagemRepository;
+import com.victor.lojavirtual.util.ImagemUtil;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ImagemService {
 
     @Autowired
     private ImagemRepository rep;
+    
+    public Imagem acharPorId(Integer id) {
+    	Optional<Imagem> obj = rep.findById(id);
+    	return obj.orElseThrow();
+    }
 
     public String uploadImage(MultipartFile file) throws IOException {
 
@@ -23,24 +30,16 @@ public class ImagemService {
 
         rep.save(img);
 
-        return "Image uploaded successfully: " +
+        return "Upload realizado com sucesso: " +
                 file.getOriginalFilename();
-
+        
     }
-
+    
     @Transactional
-    public Imagem getInfoByImageByName(String name) {
-        Optional<Imagem> img = rep.findByName(name);
-
-        return img.get();
-
-    }
-
-    @Transactional
-    public byte[] getImage(String name) {
-        Optional<Imagem> img = rep.findByName(name);
-        byte[] image = ImagemUtil.decompressImage(img.get().getimageData());
-        return image;
+    public byte[] acharImagemPorId(Integer id) {
+    	Imagem obj = acharPorId(id);
+        byte[] imagem = obj.getimageData();
+        return imagem;
     }
 
 }
