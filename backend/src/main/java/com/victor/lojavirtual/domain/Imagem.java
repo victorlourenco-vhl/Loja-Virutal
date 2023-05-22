@@ -63,11 +63,11 @@ public class Imagem implements Serializable {
 		this.type = type;
 	}
 
-	public byte[] getimageData() {
+	public byte[] getImageData() {
 		return ImagemUtil.decompressImage(imageData);
 	}
 
-	public void setimageData(byte[] imageData) {
+	public void setImageData(byte[] imageData) {
 		this.imageData = imageData;
 	}
 

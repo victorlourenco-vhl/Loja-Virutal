@@ -21,7 +21,7 @@ public class ImagemService {
     
     public Imagem acharPorId(Integer id) {
     	Optional<Imagem> obj = rep.findById(id);
-    	return obj.orElseThrow();
+    	return obj.get();
     }
 
     public String uploadImage(MultipartFile file) throws IOException {
@@ -36,9 +36,16 @@ public class ImagemService {
     }
     
     @Transactional
+    public byte[] getImage(String name) {
+        Optional<Imagem> obj = rep.findByName(name);
+        byte[] image = obj.get().getImageData();
+        return image;
+    }
+    
+    @Transactional
     public byte[] acharImagemPorId(Integer id) {
     	Imagem obj = acharPorId(id);
-        byte[] imagem = obj.getimageData();
+        byte[] imagem = obj.getImageData();
         return imagem;
     }
 

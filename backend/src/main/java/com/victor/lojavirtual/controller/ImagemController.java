@@ -21,20 +21,26 @@ import com.victor.lojavirtual.service.ImagemService;
 public class ImagemController {
 
 	@Autowired
-	private ImagemService rep;
+	private ImagemService service;
 
 	@PostMapping
 	public ResponseEntity<?> uploadImage(@RequestParam("imagem") MultipartFile file) throws IOException {
-		String response = rep.uploadImage(file);
+		String response = service.uploadImage(file);
 
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<?> acharImadgemPordId(@PathVariable("id") Integer id) {
-		byte[] image = rep.acharImagemPorId(id);
+//	@GetMapping("/{id}")
+//	public ResponseEntity<?> acharImagemPordId(@PathVariable Integer id) {
+//		byte[] image = service.acharImagemPorId(id);
+//
+//		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("imagem/png")).body(image);
+//	}
 
-		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("imagem/png")).body(image);
+	@GetMapping("/{name}")
+	public ResponseEntity<byte[]> getImageByName(@PathVariable("name") String name) {
+		byte[] image = service.getImage(name);
+		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
 	}
 
 }

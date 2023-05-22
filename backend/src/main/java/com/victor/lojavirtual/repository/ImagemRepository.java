@@ -1,9 +1,10 @@
 package com.victor.lojavirtual.repository;
 
-import com.victor.lojavirtual.domain.Imagem;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.victor.lojavirtual.domain.Imagem;
 
 public interface ImagemRepository extends JpaRepository<Imagem, Integer> {
 
