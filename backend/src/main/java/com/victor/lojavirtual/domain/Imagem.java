@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +29,10 @@ public class Imagem implements Serializable {
 
 	@Lob
 	private byte[] imageData;
+	
+	@ManyToOne
+	@JoinColumn(name = "produto_id")
+	private Produto produto;
 
 	public Imagem() {
 	}
@@ -63,11 +69,11 @@ public class Imagem implements Serializable {
 		this.type = type;
 	}
 
-	public byte[] getimageData() {
+	public byte[] getImageData() {
 		return ImagemUtil.decompressImage(imageData);
 	}
 
-	public void setimageData(byte[] imageData) {
+	public void setImageData(byte[] imageData) {
 		this.imageData = imageData;
 	}
 

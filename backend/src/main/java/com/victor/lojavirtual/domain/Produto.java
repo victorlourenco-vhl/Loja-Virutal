@@ -37,8 +37,8 @@ public class Produto implements Serializable {
 
 	private Categoria categoria;
 
-//	@OneToMany(mappedBy = "produto")
-//	private List<Imagem> imagens;
+	@OneToMany(mappedBy = "produto")
+	private List<Imagem> imagens;
 
 	public Produto() {
 
