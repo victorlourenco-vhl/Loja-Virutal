@@ -23,7 +23,8 @@ public class ImagemService {
 
 	@Autowired
 	private ImagemRepository rep;
-
+	
+	@Autowired
 	private ProdutoService produtoService;
 
 	public Imagem acharPorId(Integer id) {
@@ -34,22 +35,21 @@ public class ImagemService {
 	public Imagem inserir(Integer produtoId, MultipartFile file) throws IOException {
 		Produto produto = produtoService.acharPorId(produtoId);
 		Imagem img = new Imagem();
-		
+
 		Path uploadPath = Paths.get("C:/Users/victor/Pictures/uploads");
 
-		
 		if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-         
-        try (InputStream inputStream = file.getInputStream()) {
-            Path filePath = uploadPath.resolve(file.getName());
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            img.setNome(file.getName());
-        } catch (IOException ioe) {        
-            throw new IOException("Could not save image file: " + file.getName(), ioe);
-        }      
-		
+			Files.createDirectories(uploadPath);
+		}
+
+		try (InputStream inputStream = file.getInputStream()) {
+			Path filePath = uploadPath.resolve(file.getOriginalFilename());
+			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+			img.setNome(file.getName());
+		} catch (IOException ioe) {
+			throw new IOException("Não foi possível salvar a imagem: " + file.getName(), ioe);
+		}
+
 		img.setProduto(produto);
 		img.setDataCriacao(new Date());
 		return rep.save(img);
