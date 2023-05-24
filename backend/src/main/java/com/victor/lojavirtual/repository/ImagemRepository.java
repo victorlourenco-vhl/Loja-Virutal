@@ -8,6 +8,5 @@ import com.victor.lojavirtual.domain.Imagem;
 
 public interface ImagemRepository extends JpaRepository<Imagem, Integer> {
 
-     Optional<Imagem> findByName(String name);
 
 }
