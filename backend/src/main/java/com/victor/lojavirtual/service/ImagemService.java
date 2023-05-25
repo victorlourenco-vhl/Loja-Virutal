@@ -34,10 +34,19 @@ public class ImagemService {
 
 	public Imagem inserir(Integer produtoId, MultipartFile file) throws IOException {
 		Produto produto = produtoService.acharPorId(produtoId);
+		
 		Imagem img = new Imagem();
-
+		
+		salvarImagem(file);
+		img.setNome(file.getName());
+		img.setProduto(produto);
+		img.setDataCriacao(new Date());
+		return rep.save(img);
+	}
+	
+	public void salvarImagem(MultipartFile file) throws IOException  {
 		Path uploadPath = Paths.get("C:/Users/victor/Pictures/uploads");
-
+		
 		if (!Files.exists(uploadPath)) {
 			Files.createDirectories(uploadPath);
 		}
@@ -45,14 +54,10 @@ public class ImagemService {
 		try (InputStream inputStream = file.getInputStream()) {
 			Path filePath = uploadPath.resolve(file.getOriginalFilename());
 			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-			img.setNome(file.getName());
+			
 		} catch (IOException ioe) {
 			throw new IOException("Não foi possível salvar a imagem: " + file.getName(), ioe);
 		}
-
-		img.setProduto(produto);
-		img.setDataCriacao(new Date());
-		return rep.save(img);
 	}
 
 	public List<Imagem> listar() {
