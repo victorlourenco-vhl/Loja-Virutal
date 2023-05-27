@@ -1,17 +1,17 @@
 package com.victor.lojavirtual.domain;
 
 import java.io.Serializable;
-
-import com.victor.lojavirtual.util.ImagemUtil;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "imagem")
@@ -23,26 +23,26 @@ public class Imagem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String name;
+	private String nome;
 
-	private String type;
-
-	@Lob
-	private byte[] imageData;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCriacao;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataAtualizacao;
+
 	@ManyToOne
-	@JoinColumn(name = "produto_id")
+	@JoinColumn(name = "id_produto")
 	private Produto produto;
 
 	public Imagem() {
+
 	}
 
-	public Imagem(Integer id, String name, String type, byte[] imageData) {
+	public Imagem(Integer id, String nome) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.imageData = imageData;
+		this.nome = nome;
 	}
 
 	public Integer getId() {
@@ -53,28 +53,38 @@ public class Imagem implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getType() {
-		return type;
+	public Date getDataCriacao() {
+		return dataCriacao;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 
-	public byte[] getImageData() {
-		return ImagemUtil.decompressImage(imageData);
+	public Date getDataAtualizacao() {
+		return dataAtualizacao;
 	}
 
-	public void setImageData(byte[] imageData) {
-		this.imageData = imageData;
+	public void setDataAtualizacao(Date dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
 	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	
+	
 
 }
