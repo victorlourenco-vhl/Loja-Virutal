@@ -35,9 +35,9 @@ public class ImagemService {
 	public Imagem inserir(Integer produtoId, MultipartFile file) throws IOException {
 		Produto produto = produtoService.acharPorId(produtoId);
 		
-		Imagem img = new Imagem();
-		
 		salvarImagem(file);
+		
+		Imagem img = new Imagem();
 		img.setNome(file.getName());
 		img.setProduto(produto);
 		img.setDataCriacao(new Date());
