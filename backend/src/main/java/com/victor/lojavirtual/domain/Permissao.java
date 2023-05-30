@@ -2,11 +2,14 @@ package com.victor.lojavirtual.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -18,7 +21,7 @@ public class Permissao implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -31,9 +34,20 @@ public class Permissao implements Serializable {
 
 	}
 
-	public Permissao(String nome) {
+	public Permissao(Integer id, String nome, Date dataCriacao, Date dataAtualizacao) {
 		super();
+		this.id = id;
 		this.nome = nome;
+		this.dataCriacao = dataCriacao;
+		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -59,5 +73,7 @@ public class Permissao implements Serializable {
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
+
+	
 
 }
